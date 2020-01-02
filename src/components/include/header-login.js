@@ -2,8 +2,6 @@ import React,{Component} from 'react';
 
 class HeaderLogin extends Component {
     render(){
-
-   
 return(
     <header id="aa-header" >
     <div className="aa-header-menu">
@@ -26,8 +24,6 @@ return(
                   <input type="text" name="" id="" placeholder="Search"/>
                   <button type="submit"><span className="fa fa-search"/></button>
                 </form>
-            
-                
               </div>
             
               <div className="col-md-5 aa-menu-box">
@@ -37,8 +33,7 @@ return(
               <i className="fal fa-ellipsis-v"></i>
             </button>          
           </div>
-                <div className="navbar-collapse collapse">
-                  
+                <div className="navbar-collapse collapse"> 
                     <ul className="nav navbar-nav">
                       <li><a href=""><i className="fal fa-plane-alt"></i></a></li>
                       
