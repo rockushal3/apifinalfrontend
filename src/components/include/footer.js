@@ -64,10 +64,10 @@ return(
                         <p><span className="fa fa-envelope"></span>journeymate@gmail.com</p>
                       </address>
                       <div className="aa-footer-social">
-                        <a href="#"><span className="fa fa-facebook"></span></a>
-                        <a href="#"><span className="fa fa-twitter"></span></a>
-                        <a href="#"><span className="fa fa-google-plus"></span></a>
-                        <a href="#"><span className="fa fa-youtube"></span></a>
+                        <a href="#"><span className="fab fa-facebook"></span></a>
+                        <a href="#"><span className="fab fa-twitter"></span></a>
+                        <a href="#"><span className="fab fa-google-plus"></span></a>
+                        <a href="#"><span className="fab fa-youtube"></span></a>
                       </div>
                     </div>
                   </div>
@@ -86,10 +86,10 @@ return(
             <div className="aa-footer-bottom-area">
               <p>Designed by <a href="http://www.kushalstha.com.np/">kushalstha.com.np</a></p>
               <div className="aa-footer-payment">
-                <span className="fa fa-cc-mastercard"></span>
-                <span className="fa fa-cc-visa"></span>
-                <span className="fa fa-paypal"></span>
-                <span className="fa fa-cc-discover"></span>
+                <span className="fab fa-cc-mastercard"></span>
+                <span className="fab fa-cc-visa"></span>
+                <span className="fab fa-paypal"></span>
+                <span className="fab fa-cc-discover"></span>
               </div>
             </div>
           </div>
