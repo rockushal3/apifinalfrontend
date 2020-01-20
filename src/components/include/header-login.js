@@ -12,7 +12,7 @@ return(
             
               <div className="aa-logo">
                 
-                <a href="index.html">
+                <a href="/">
                   <span className="fa fa-travel"></span>
                   <p>Journey<strong>Mate</strong> <span>Travel with new Friends</span></p>
                 </a>
@@ -54,7 +54,7 @@ return(
                         <ul className="dropdown-menu">                
                           <li><a href="">Profile</a></li>
                           <li><a href="">Setting</a></li>                
-                          <li><a href="">Logout</a></li>                
+                          <li><a href="/">Logout</a></li>                
                         </ul>
                       </li>
                     </ul>

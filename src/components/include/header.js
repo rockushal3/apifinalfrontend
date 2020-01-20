@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-
 class Header extends Component {
     render(){
 
@@ -33,7 +32,7 @@ return(
                   <button type="submit">Login</button>
                 </form>
             </div>
-                <a href = "#">Forget Password?</a>
+                <a href = "/newsfeed">Forget Password?</a>
               </div>
                          
             </div>

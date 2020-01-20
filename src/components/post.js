@@ -8,7 +8,7 @@ class Post extends Component {
 
       <div className="row post">
         <div className="col-md-12">
-          <img src={"http://localhost:3030/image/" + this.props.posts.image} className="img-circle" height="50px" width="50px" />
+          <img src={"http://localhost:3030/image/" + this.props.posts.image} className="img-circle" height="40px" width="40px" />
           <a href="">{this.props.posts.name}</a>
           <a href="" className="float-right font-big"><i className="fa fa-ellipsis-h"></i></a>
         </div>
