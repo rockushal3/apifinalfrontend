@@ -2,14 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 
-//Components
+//Route
 import Router from './router'
 
-
 const App = () => {
-    return (<div>
-        <Router/>
-    </div>)
+    return <Router/>
 }
-
 ReactDOM.render(<App />, document.querySelector('#root'))

@@ -8,14 +8,14 @@ import Home from './container/home'
 
 class Router extends Component {
     render() {
-    return (<div>
+    return (
         <BrowserRouter>
             <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/newsfeed" component={Post} />
             </Switch>
         </BrowserRouter>
-    </div>)
+    )
 }
 }
 

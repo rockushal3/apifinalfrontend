@@ -11,6 +11,7 @@ class Home extends Component {
                 <Header />
                 <Login/>
                 <Footer />
+       
             </div>
         )
     }
