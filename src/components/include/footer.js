@@ -2,12 +2,8 @@ import React, { Component } from 'react';
 
 class Footer extends Component {
   render() {
-
-
     return (
-
       <footer id="aa-footer">
-
         <div className="aa-footer-top">
           <div className="container">
             <div className="row">

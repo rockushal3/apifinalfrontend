@@ -6,6 +6,6 @@ import ReactDOM from 'react-dom';
 import Router from './router'
 
 const App = () => {
-    return <Router/>
+    return <Router />
 }
 ReactDOM.render(<App />, document.querySelector('#root'))
