@@ -37,7 +37,7 @@
 
 /* BASE - Base tyles, Variables, Mixins, etc. */
 body {
-  background-color: #f0f0f0;
+  background-color: #f5f6fa;
   font-family: "Lato", sans-serif;
   color: #333333;
   font-size: 16px;
@@ -394,7 +394,7 @@ img {
   margin-left: 5%;
   margin-top: 13px;
   position: relative;
-  width: 400px;
+  max-width: 400px;
 }
 
 #aa-header .aa-header-menu .aa-header-bottom-area .aa-search-box input[type="text"]{

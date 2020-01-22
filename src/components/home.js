@@ -19,7 +19,7 @@ class Home extends Component {
     const data = {
       name: this.state.name + " " + this.state.lname,
       email: this.state.email,
-      gender: this.state.gender,
+      gender: this.state.gender, 
       phone: this.state.phone,
       dob: this.state.dob,
       password: this.state.password
