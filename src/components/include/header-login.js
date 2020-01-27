@@ -5,7 +5,7 @@ class HeaderLogin extends Component {
 
     return (
       <header id="aa-header" >
-        <div className="aa-header-menu">
+        <div className="aa-header-menu ">
           <div className="container">
             <div className="row">
               <div className="col-md-12">

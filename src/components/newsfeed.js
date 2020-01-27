@@ -16,7 +16,7 @@ class Newsfeed extends Component {
             <div className="col-md-12">
               <div className="aa-blog-archive-area">
                 <div className="row">
-                  <div className="col-md-2 related-post">
+                  <div className="col-md-2 related-post ">
                     <div className="row">
                       <div className="col-md-12">
                         <div className="card">
@@ -53,7 +53,7 @@ class Newsfeed extends Component {
                                 <a href="#" className="list-group-item">My trip <span className="float-right badge badge-light round">142</span> </a>
                                 <a href="#" className="list-group-item">Friends  <span className="float-right badge badge-light round">3</span>  </a>
                                 <a href="#" className="list-group-item">Friends Req <span className="float-right badge badge-light round">32</span>  </a>
-                                <a href="#" className="list-group-item">List<span className="float-right badge badge-light round">12</span>  </a>
+                                <a href="#" className="list-group-item">Notification<span className="float-right badge badge-light round">12</span>  </a>
                               </div>
                             </div>
                           </article>
