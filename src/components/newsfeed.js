@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Post from './post';
+
 class Newsfeed extends Component {
 
   render() {
+
     //post design foreach loop
     const postdesign = this.props.post.map(post => {
       return <Post posts={post} />
@@ -21,7 +23,10 @@ class Newsfeed extends Component {
                       <div className="col-md-12">
                         <div className="card">
                           <article className="card-group-item">
-                            <center style={{ marginTop: 20 }}><a className="btn btn-primary" data-toggle="modal" data-target="#myModal" style={{ backgroundColor: '#2699FB' }}>Add Post</a>
+
+                            <header className="card-header"><center><img src={"http://localhost:3030/image/" + this.props.user.image} style={{marginTop:10}} className="img-circle" width="100px" height="100px" /></center>
+                              <h5 className="title text-center"><b>{ this.props.user.name}</b></h5></header>
+                            <center style={{ marginTop: 20, marginBottom: 20 }}><a className="btn btn-primary" data-toggle="modal" data-target="#myModal" style={{ backgroundColor: '#2699FB' }}>Add Post</a>
                             </center>
                             <div id="myModal" class="modal fade" role="dialog">
                               <div className="modal-dialog">
@@ -47,7 +52,6 @@ class Newsfeed extends Component {
                                 </div>
                               </div>
                             </div>
-                            <header className="card-header"><h6 className="title"></h6></header>
                             <div className="filter-content">
                               <div className="list-group list-group-flush">
                                 <a href="#" className="list-group-item">My trip <span className="float-right badge badge-light round">142</span> </a>

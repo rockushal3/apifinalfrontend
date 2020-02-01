@@ -10,7 +10,22 @@ class Header extends Component {
       password: '',
       isLoggedIn: false
     }
+    
+    this.state = {
+          config: {
+              headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+          }
+      }
+  
   }
+
+  componentDidMount() {
+    axios.get('http://localhost:3030/checkLogin', this.state.config)
+        .then((response) => {
+            this.setState({ isLoggedIn: true })
+        });
+}
+
  // form handler
   handleChange = (e) => {
     this.setState(
@@ -22,12 +37,12 @@ class Header extends Component {
     e.preventDefault();
     axios.post('http://localhost:3030/login', this.state)
       .then((response) => {
-        console.log(response.data)
-        localStorage.setItem('token', 'Bearer ' + response.data.token)
+        localStorage.setItem('token', response.data.token)
         this.setState({ isLoggedIn: true })
       }).catch((err) => console.log(err.response))
     this.setState({ email: '', password: '' })
   }
+ 
 
   render() {
     if (this.state.isLoggedIn === true) {
