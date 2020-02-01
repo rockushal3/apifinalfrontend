@@ -8,6 +8,7 @@ class HeaderLogin extends Component {
       isLoggedIn: false
     }
     this.state = {
+      friendrequest:[],
       relation: [],
       user: {},
       config: {
@@ -27,11 +28,15 @@ class HeaderLogin extends Component {
           this.setState({ relation: res.data });
           console.log(this.state.relation)
         })
+        axios.get("http://localhost:3030/getrequest/" + this.state.user._id).then((res) => {
+          this.setState({ friendrequest: res.data });
+        })
       });
 
 
   }
   render() {
+    //notification function 
     const friendNotification = this.state.relation.map(friend => {
       if(friend.user_id_1._id==this.state.user._id && friend.Status =="Friends"){
       return (
@@ -58,7 +63,20 @@ class HeaderLogin extends Component {
         return <h1>{friend.user_id_1}</h1>
       }
     })
-  
+   //notification function 
+   const friendRequest = this.state.friendrequest.map(friend => {
+    return (
+      <li>
+      <div class="col-md-4 col-sm-4 col-xs-4"><div class="notify-img"><img src={"http://localhost:3030/image/" + friend.user_id_1.image} alt="" className="img-circle" width="60px" height="60px" /></div></div>
+    <div class="col-md-8 col-sm-8 col-xs-8"><h6><b>{friend.user_id_1.name}</b></h6>
+        <button className="btn btn-primary">Confirm</button>
+        <button className="btn btn-default" style={{ marginLeft: 10 }}>Cancel</button>
+      </div>
+    </li>
+    )
+    
+   
+  })
     return (
 
       <header id="aa-header" >
@@ -106,13 +124,8 @@ class HeaderLogin extends Component {
                                 </div>
                               </div>
                               <div class="drop-content">
-                                <li>
-                                  <div class="col-md-4 col-sm-4 col-xs-4"><div class="notify-img"><img src="http://placehold.it/45x45" alt="" className="img-circle" width="60px" height="60px" /></div></div>
-                                  <div class="col-md-8 col-sm-8 col-xs-8"><h6><b>Kushal Shrestha</b></h6>
-                                    <button className="btn btn-primary">Confirm</button>
-                                    <button className="btn btn-default" style={{ marginLeft: 10 }}>Cancel</button>
-                                  </div>
-                                </li>
+                                
+                                {friendRequest}
                               </div>
 
 
@@ -140,7 +153,7 @@ class HeaderLogin extends Component {
                             <ul className="dropdown-menu">
                               <li><a href="">Profile</a></li>
                               <li><a href="">Setting</a></li>
-                              <li><a href="/">Logout</a></li>
+                              <li><a href="">Logout</a></li>
                             </ul>
                           </li>
                         </ul>
