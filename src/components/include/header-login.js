@@ -42,7 +42,7 @@ class HeaderLogin extends Component {
 
                           </a>
                             <ul className="dropdown-menu">
-
+                          
                             </ul>
                           </li>
 
@@ -69,6 +69,7 @@ class HeaderLogin extends Component {
           </div>
         </div>
       </header>
+     
     )
   }
 }

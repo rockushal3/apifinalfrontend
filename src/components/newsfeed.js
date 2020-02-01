@@ -47,7 +47,7 @@ class Newsfeed extends Component {
                                 </div>
                               </div>
                             </div>
-                            <header className="card-header"><h6 className="title">Kushal Shrestha</h6></header>
+                            <header className="card-header"><h6 className="title"></h6></header>
                             <div className="filter-content">
                               <div className="list-group list-group-flush">
                                 <a href="#" className="list-group-item">My trip <span className="float-right badge badge-light round">142</span> </a>
@@ -62,7 +62,7 @@ class Newsfeed extends Component {
 
                     </div>
                   </div>
-                  <div className="col-md-7">
+                  <div class="col-md-7 gedf-main">
                     {postdesign}
                   </div>
                   <div className="col-md-3 related-post">
