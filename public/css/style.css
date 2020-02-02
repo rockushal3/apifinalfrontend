@@ -4247,3 +4247,9 @@ color: #303030
                 overflow-x: auto; 
                 -ms-overflow-style: none;
 }
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  color: #2699FB;
+}
+.color-blue{
+  color: #2699FB;
+}

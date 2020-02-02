@@ -4,184 +4,265 @@ import axios from 'axios';
 class Userprofile extends Component {
     constructor(props) {
         super(props)
-      
+
         this.state = {
-          post:[],
-          user: {},
-          config: {
-            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
-          }
+            profileimage: '',
+            coverimage: '',
+            name:'',
+            email:'',
+            phone:'',
+            gender:'',
+            dob:'',
+            address:'',
+            post: [],
+            user: {},
+            config: {
+                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+            }
         }
-      }
-      componentDidMount() {
+    }
+    componentDidMount() {
         axios.get('http://localhost:3030/checkLogin', this.state.config)
-          .then((response) => {
-            this.setState({
-              user: response.data
-            })
-            axios.get('http://localhost:3030/findpostById/'+this.state.user._id, this.state.config)
             .then((response) => {
-              this.setState({
-                post: response.data
-                
-              })
-              console.log(this.state.post)
-           
-          });
-    
+                this.setState({
+                    user: response.data,
+                    name:response.data.name,
+                    email:response.data.email,
+                    phone:response.data.phone,
+                    gender:response.data.gender,
+                    dob:response.data.dob,
+                    address:response.data.address
+                })
+                axios.get('http://localhost:3030/findpostByUserId/' + this.state.user._id, this.state.config)
+                    .then((response) => {
+                        this.setState({
+                            post: response.data
+
+                        })
+                        console.log(this.state.post)
+
+                    });
+
+            })
+    }
+
+     // form handler
+  handleChange = (e) => {
+    this.setState(
+      { [e.target.name]: e.target.value }
+    )
+  }
+
+    sendprofile = () => {
+        let formdata = new FormData();
+        formdata.append('image',this.state.profileimage[0])
+        axios.put('http://localhost:3030/updateProfile/'+ this.state.user._id, formdata,this.state.config).then(function(){
+          window.location.reload();
+        })
+      }
+
+      sendcover = () => {
+        let formdata = new FormData();
+        formdata.append('image',this.state.coverimage[0])
+        axios.put('http://localhost:3030/updateCover/'+ this.state.user._id, formdata,this.state.config).then(function(){
+          window.location.reload();
+        })
+      }
+
+      sendprofile = () => {
+        const data = {
+            name: this.state.name,
+            email: this.state.email,
+            gender: this.state.gender, 
+            phone: this.state.phone,
+            dob: this.state.dob,
+            address: this.state.address
+      
+          }
+        axios.put('http://localhost:3030/updateUser/'+ this.state.user._id, data,this.state.config).then(function(){
+          window.location.reload();
         })
       }
     render() {
-        
+        //post design foreach loop
+        const postdesign = this.state.post.map(post => {
+            return <Post posts={post} />
+        })
         return (
             <div className="container" >
-            <div className="row my-2" style={{paddingTop:130}}>
-            <div className="col-lg-4 order-lg-1 text-center">
-                    <img src={"http://localhost:3030/image/"+this.state.user.image} width="150px" height="150px" className="mx-auto img-fluid img-circle d-block" alt="avatar"/>
-                    <br/>
-                    <h4><b>{this.state.user.name}</b></h4>
-                    <label className="custom-file">
-                        <button className="btn btn-primary">Update Profile</button>
-                        <button className="btn btn-primary"style={{marginLeft:10}}>Update Cover</button>
+                <div className="row my-2" style={{ paddingTop: 130 }}>
+                    <div className="col-lg-4 order-lg-1 text-center">
+                        <img src={"http://localhost:3030/image/" + this.state.user.image} width="150px" height="150px" className="mx-auto img-fluid img-circle d-block" alt="avatar" />
+                        <br />
+                        <h4><b>{this.state.user.name}</b></h4>
+                        <button className="btn btn-primary" data-toggle="modal" data-target="#myModal">Update Profile</button>
+                        <div id="myModal" class="modal fade" role="dialog">
+                            <div className="modal-dialog">
 
-                        
-                    </label>
-                </div>
-                <div className="col-lg-8 order-lg-2 user-post">
-                    <div classNameName="col-lg-12">
-                    <img src={"http://localhost:3030/image/"+this.state.user.coverimage} className="img-responsive" width="100%" />
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <button type="button" className="close" data-dismiss="modal">&times;</button>
+                                        <h4 className="modal-title">Update Profile</h4>
+                                    </div>
+                                    <div className="modal-body">
+                                        <form >
+                                            <div className="form-group">
+
+                                                <label for="image">Image:</label><br />
+                                                <input className="form-control" type="file" onChange={(event) =>
+                                                    this.setState({ profileimage: event.target.files })} placeholder="Upload Image" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div className="modal-footer">
+                                        <button type="button" onClick={this.sendprofile} className="btn btn-primary">Upload</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button className="btn btn-primary" style={{ marginLeft: 10 }} data-toggle="modal" data-target="#myModal1">Update Cover</button>
+                        <div id="myModal1" class="modal fade" role="dialog">
+                            <div className="modal-dialog">
+
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <button type="button" className="close" data-dismiss="modal">&times;</button>
+                                        <h4 className="modal-title">Update Cover</h4>
+                                    </div>
+                                    <div className="modal-body">
+                                        <form >
+                                            <div className="form-group">
+
+                                                <label for="image">Image:</label><br />
+                                                <input className="form-control" type="file" onChange={(event) =>
+                                                    this.setState({ coverimage: event.target.files })} placeholder="Upload Image" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div className="modal-footer">
+                                        <button type="button" onClick={this.sendcover} className="btn btn-primary">Upload</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
-                    <ul className="nav nav-tabs">
-                        <li className="nav-item">
-                            <a href="" data-target="#profile" data-toggle="tab" className="nav-link active">Profile</a>
-                        </li>
-                        <li className="nav-item">
-                            <a href="" data-target="#messages" data-toggle="tab" className="nav-link">Friends</a>
-                        </li>
-                        <li className="nav-item">
-                            <a href="" data-target="#edit" data-toggle="tab" className="nav-link">Edit</a>
-                        </li>
-                    </ul>
-                    <div className="tab-content py-4">
-                        <div className="tab-pane active" id="profile">
-                            <h5 className="mb-3">User Profile</h5>
+                    <div className="col-lg-8 order-lg-2 user-post">
+                        <div classNameName="col-lg-12">
+                            <img src={"http://localhost:3030/image/" + this.state.user.coverimage} className="img-responsive" width="100%" />
+                        <br/>
+                        </div>
+                        <ul className="nav nav-tabs">
+                            <li className="nav-item active">
+                                <a href="" data-target="#profile" data-toggle="tab" className="nav-link active">Profile</a>
+                            </li>
+                            <li className="nav-item">
+                                <a href="" data-target="#messages" data-toggle="tab" className="nav-link">Friends</a>
+                            </li>
+                            <li className="nav-item">
+                                <a href="" data-target="#edit" data-toggle="tab" className="nav-link">Edit</a>
+                            </li>
+                        </ul>
+                        <div className="tab-content py-4">
+                            <div className="tab-pane active" id="profile">
+                            <h3 className="mb-3 color-blue"><b>User Detail</b></h3>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <h6>Address</h6>
+                                        <p>
+                                            {this.state.user.address}
+                                        </p>
+                                        <h6>Phone</h6>
+                                        <p>
+                                            {this.state.user.phone}
+                                        </p>
+                                        <h6>Birthday</h6>
+                                        <p>
+                                            {this.state.user.dob}
+                                        </p>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <h6>E-Mail</h6>
+                                        <p>{this.state.user.email}</p>
+                                        <h6>Gender</h6>
+                                        <p>{this.state.user.gender}</p>
+                                    </div>
+                                    <div className="col-md-12">
+                                        <h3 className="mb-3 color-blue"><b>User Posts</b></h3>
+                                        {postdesign}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="tab-pane" id="messages">
+                            <h3 className="mb-3 color-blue"><b>Friends</b></h3>
                             <div className="row">
-                                <div className="col-md-6">
-                                    <h6>Address</h6>
-                                    <p>
-                                    {this.state.user.address}
-                                    </p>
-                                    <h6>Phone</h6>
-                                    <p>
-                                    {this.state.user.phone}
-                                    </p>
-                                    <h6>Birthday</h6>
-                                    <p>
-                                    {this.state.user.dob}
-                                    </p>
+                                <div className="col-md-2">
+                                   <img src={"http://localhost:3030/image/"+this.state.user.image} className="img-circle" width="80%"/>                     
                                 </div>
-                                <div className="col-md-6">
-                                    <h6>E-Mail</h6>
-                                   <p>{this.state.user.email}</p>
-                                   <h6>Gender</h6>
-                                   <p>{this.state.user.gender}</p>
-                                </div>
-                                <div className="col-md-12">
-                                <h5 className="mb-3">User Posts</h5>
-                                   {/* {postdesign} */}
+                                <div className="col-md-9">
+                                    <h4><b>Kushal Shrestha</b></h4>
+                                    <p>address</p>
                                 </div>
                             </div>
-                        </div>
-                        <div className="tab-pane" id="messages">
-                            <div className="alert alert-info alert-dismissable">
-                                <a className="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important messages to the user.
                             </div>
-                            <table className="table table-hover table-striped">
-                                <tbody>                                    
-                                    <tr>
-                                        <td>
-                                           <span className="float-right font-weight-bold">3 hrs ago</span> Here is your a link to the latest summary report from the..
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                           <span className="float-right font-weight-bold">Yesterday</span> There has been a request on your account since that was..
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                           <span className="float-right font-weight-bold">9/10</span> Porttitor vitae ultrices quis, dapibus id dolor. Morbi venenatis lacinia rhoncus. 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                           <span className="float-right font-weight-bold">9/4</span> Vestibulum tincidunt ullamcorper eros eget luctus. 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                           <span className="float-right font-weight-bold">9/4</span> Maxamillion ais the fix for tibulum tincidunt ullamcorper eros. 
-                                        </td>
-                                    </tr>
-                                </tbody> 
-                            </table>
-                        </div>
-                        <div className="tab-pane" id="edit">
-                            <form role="form">
-                                <div className="form-group row">
-                                    <label className="col-lg-3 col-form-label form-control-label">Full Name</label>
-                                    <div className="col-lg-9">
-                                        <input className="form-control" type="text" value="Jane"/>
+                            <div className="tab-pane" id="edit">
+                            <h3 className="mb-3 color-blue"><b>Edit User</b></h3>
+                                <form role="form">
+                                    <div className="form-group row">
+                                        <label className="col-lg-3 col-form-label form-control-label">Full Name</label>
+                                        <div className="col-lg-9">
+                                            <input className="form-control" name="name" type="text" value={this.state.name} onChange={this.handleChange} />
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="form-group row">
-                                    <label className="col-lg-3 col-form-label form-control-label">Email</label>
-                                    <div className="col-lg-9">
-                                        <input className="form-control" type="email" value="email@gmail.com"/>
+                                    <div className="form-group row">
+                                        <label className="col-lg-3 col-form-label form-control-label">Email</label>
+                                        <div className="col-lg-9">
+                                            <input className="form-control" name="email" type="email" value={this.state.email} onChange={this.handleChange} />
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="form-group row">
-                                    <label className="col-lg-3 col-form-label form-control-label">DOB</label>
-                                    <div className="col-lg-9">
-                                        <input className="form-control" type="date" value=""/>
+                                    <div className="form-group row">
+                                        <label className="col-lg-3 col-form-label form-control-label">DOB</label>
+                                        <div className="col-lg-9">
+                                            <input className="form-control" name="dob" type="text" value={this.state.dob} onChange={this.handleChange} />
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="form-group row">
-                                    <label className="col-lg-3 col-form-label form-control-label">Phone</label>
-                                    <div className="col-lg-9">
-                                        <input className="form-control" type="url" value=""/>
+                                    <div className="form-group row">
+                                        <label className="col-lg-3 col-form-label form-control-label">Phone</label>
+                                        <div className="col-lg-9">
+                                            <input className="form-control" name="phone" value={this.state.phone} onChange={this.handleChange} onChange={this.handleChange} />
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="form-group row">
-                                    <label className="col-lg-3 col-form-label form-control-label">Address</label>
-                                    <div className="col-lg-9">
-                                        <input className="form-control" type="text" value="" placeholder="Address"/>
+                                    <div className="form-group row">
+                                        <label className="col-lg-3 col-form-label form-control-label">Address</label>
+                                        <div className="col-lg-9">
+                                            <input className="form-control" name="address" value={this.state.address} onChange={this.handleChange} placeholder="Address" />
+                                        </div>
                                     </div>
-                                </div>
-                                
-                            
-                                <div className="form-group row">
-                                    <label className="col-lg-3 col-form-label form-control-label">Gender</label>
-                                    <div className="col-lg-9">
-                                        <input className="form-control" type="text" value="janeuser"/>
+
+
+                                    <div className="form-group row">
+                                        <label className="col-lg-3 col-form-label form-control-label">Gender</label>
+                                        <div className="col-lg-9">
+                                            <input className="form-control" name="gender" type="text" value={this.state.gender} onChange={this.handleChange} />
+                                        </div>
                                     </div>
-                                </div>
-                               
-                                <div className="form-group row">
-                                    <label className="col-lg-3 col-form-label form-control-label"></label>
-                                    <div className="col-lg-9">
-                                        <input type="button" className="btn btn-primary" value="Save Changes"/>
+
+                                    <div className="form-group row">
+                                        <label className="col-lg-3 col-form-label form-control-label"></label>
+                                        <div className="col-lg-9">
+                                            <input type="button" onClick={this.sendprofile} className="btn btn-primary" value="Save Changes" />
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
+
                 </div>
-                
             </div>
-        </div>
-            
+
         )
-    }s
+    } s
 }
 export default Userprofile;
