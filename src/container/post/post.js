@@ -8,9 +8,7 @@ class Post extends Component {
     
     constructor(props) {
         super(props)
-        this.state = {
-          isLoggedIn: false
-        }
+        
         this.state = {
             user:{},
             posts:[],
@@ -24,9 +22,9 @@ class Post extends Component {
         axios.get('http://localhost:3030/checkLogin', this.state.config)
             .then((response) => {
                 this.setState({
-                    isLoggedIn: true,
                     user:response.data
                     })
+                    console.log(this.state.isLoggedIn)
             });
         axios.get("http://localhost:3030/findpost").then(res => {
             this.setState({ posts: res.data });
@@ -34,9 +32,7 @@ class Post extends Component {
     }
 
     render() {
-        if (this.state.isLoggedIn === false) {
-            return <Redirect to='/' />
-          }
+    
 
         return (
             <div>

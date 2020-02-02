@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import { Link, withRouter ,Redirect } from 'react-router-dom'
+
 
 class HeaderLogin extends Component {
   constructor(props) {
@@ -31,11 +33,24 @@ class HeaderLogin extends Component {
         axios.get("http://localhost:3030/getrequest/" + this.state.user._id).then((res) => {
           this.setState({ friendrequest: res.data });
         })
+      }).catch((e)=>{
+        this.setState({
+          isLoggedIn:false
+        })
       });
 
 
   }
+  handleLogout = (e) => {
+    e.preventDefault();
+    localStorage.removeItem('token');
+    this.props.history.push('/')
+}
   render() {
+    if (this.state.isLoggedIn === false) {
+      return <Redirect to='/' />
+    }
+    
     //notification function 
     const friendNotification = this.state.relation.map(friend => {
       if(friend.user_id_1._id==this.state.user._id && friend.Status =="Friends"){
@@ -153,7 +168,7 @@ class HeaderLogin extends Component {
                             <ul className="dropdown-menu">
                               <li><a href="">Profile</a></li>
                               <li><a href="">Setting</a></li>
-                              <li><a href="">Logout</a></li>
+                              <li><a href="/" onClick={this.handleLogout}>Logout</a></li>
                             </ul>
                           </li>
                         </ul>
@@ -171,4 +186,4 @@ class HeaderLogin extends Component {
     )
   }
 }
-export default HeaderLogin;
+export default withRouter(HeaderLogin);
