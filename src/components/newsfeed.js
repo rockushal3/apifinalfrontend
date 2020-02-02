@@ -1,7 +1,30 @@
 import React, { Component } from 'react';
 import Post from './post';
+import axios from 'axios'
 
 class Newsfeed extends Component {
+  constructor() {
+    super();
+    this.state = {
+      caption: '',
+      image: {},
+      config: {
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+      }
+    }
+  }
+  sendUser = () => {
+    let formdata = new FormData();
+    formdata.append('image',this.state.image[0])
+    formdata.append('caption',this.state.caption)
+    formdata.append('user_id',this.props.user._id)
+    console.log(this.state.image[0])
+  
+    axios.post('http://localhost:3030/createpost', formdata,this.state.config).then(function(){
+      window.location.reload();
+    })
+  }
+  
 
   render() {
 
@@ -40,14 +63,16 @@ class Newsfeed extends Component {
                                     <form >
                                       <div className="form-group">
                                         <label for="caption">Caption:</label><br />
-                                        <input className="form-control" type="text" placeholder="What's on your mind?" />
+                                        <input className="form-control" type="text" value={this.state.caption} onChange={(event) =>
+                                          this.setState({ caption: event.target.value })} placeholder="What's on your mind?" />
                                         <label for="image">Image:</label><br />
-                                        <input className="form-control" type="file" placeholder="Upload Image" />
+                                        <input className="form-control" type="file" onChange={(event) =>
+                                          this.setState({ image: event.target.files })} placeholder="Upload Image" />
                                       </div>
                                     </form>
                                   </div>
                                   <div className="modal-footer">
-                                    <button type="button" className="btn btn-primary">Upload</button>
+                                    <button type="button" onClick={this.sendUser} className="btn btn-primary">Upload</button>
                                   </div>
                                 </div>
                               </div>

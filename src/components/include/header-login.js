@@ -166,7 +166,7 @@ class HeaderLogin extends Component {
 
                           <li><a href="#"><i className="fal fa-cog"> </i></a>
                             <ul className="dropdown-menu">
-                              <li><a href="">Profile</a></li>
+                              <li><a href="/profile">Profile</a></li>
                               <li><a href="">Setting</a></li>
                               <li><a href="/" onClick={this.handleLogout}>Logout</a></li>
                             </ul>
