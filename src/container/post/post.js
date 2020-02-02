@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
 import Header from '../../components/include/header-login'
 import Newsfeed from '../../components/newsfeed'
 import Footer from '../../components/include/footer'
@@ -26,7 +25,7 @@ class Post extends Component {
                     })
                     console.log(this.state.isLoggedIn)
             });
-        axios.get("http://localhost:3030/findpost").then(res => {
+        axios.get("http://localhost:3030/findpost", this.state.config).then(res => {
             this.setState({ posts: res.data });
         })
     }

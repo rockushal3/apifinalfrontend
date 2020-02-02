@@ -4237,3 +4237,13 @@ color: #303030
 .dropdown-menu.notify-drop .notify-drop-footer a:hover {
   color: #333;
 }
+.user-post::-webkit-scrollbar {
+  display: none;
+}
+
+.user-post{
+              height: 100vh; 
+                overflow-x: hidden; 
+                overflow-x: auto; 
+                -ms-overflow-style: none;
+}
