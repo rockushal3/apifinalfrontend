@@ -4253,3 +4253,27 @@ color: #303030
 .color-blue{
   color: #2699FB;
 }
+
+.bg-white {
+  background-color: #fff!important;
+}
+.p-10 {
+  padding: 10px!important;
+}
+.media.media-xs .media-object {
+  width: 45px;
+}
+.media.media-xs .media-body  p{
+  font-size: 10px !important;
+}
+.m-b-2 {
+  margin-bottom: 2px!important;
+}
+.media>.media-left, .media>.pull-left {
+  padding-right: 15px;
+}
+.media-body, .media-left, .media-right {
+  display: table-cell;
+  vertical-align: top;
+}
+                                  

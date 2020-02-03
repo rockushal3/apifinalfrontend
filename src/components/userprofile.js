@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Post from './post';
+import Friend from './friend';
 import axios from 'axios';
 class Userprofile extends Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class Userprofile extends Component {
             gender:'',
             dob:'',
             address:'',
+            friends:[],
             post: [],
             user: {},
             config: {
@@ -37,11 +39,14 @@ class Userprofile extends Component {
                     .then((response) => {
                         this.setState({
                             post: response.data
-
                         })
-                        console.log(this.state.post)
-
-                    });
+                    })
+                axios.get('http://localhost:3030/allfriend/' + this.state.user._id)
+                    .then((response) => {
+                        this.setState({
+                            friends: response.data
+                        })
+                    })
 
             })
     }
@@ -53,9 +58,10 @@ class Userprofile extends Component {
     )
   }
 
-    sendprofile = () => {
+    sendprofilepic = () => {
         let formdata = new FormData();
         formdata.append('image',this.state.profileimage[0])
+        console.log(this.state.profileimage[0])
         axios.put('http://localhost:3030/updateProfile/'+ this.state.user._id, formdata,this.state.config).then(function(){
           window.location.reload();
         })
@@ -88,6 +94,16 @@ class Userprofile extends Component {
         const postdesign = this.state.post.map(post => {
             return <Post posts={post} />
         })
+
+        const friendlist = this.state.friends.map(friend => {
+            if(friend.user_id_1._id==this.state.user._id){
+            return <Friend userdetail={friend.user_id_2} />
+            }
+            else{
+                return <Friend userdetail={friend.user_id_1} />
+            }
+        })
+        
         return (
             <div className="container" >
                 <div className="row my-2" style={{ paddingTop: 130 }}>
@@ -115,7 +131,7 @@ class Userprofile extends Component {
                                         </form>
                                     </div>
                                     <div className="modal-footer">
-                                        <button type="button" onClick={this.sendprofile} className="btn btn-primary">Upload</button>
+                                        <button type="button" onClick={this.sendprofilepic} className="btn btn-primary">Upload</button>
                                     </div>
                                 </div>
                             </div>
@@ -196,15 +212,10 @@ class Userprofile extends Component {
                             </div>
                             <div className="tab-pane" id="messages">
                             <h3 className="mb-3 color-blue"><b>Friends</b></h3>
-                            <div className="row">
-                                <div className="col-md-2">
-                                   <img src={"http://localhost:3030/image/"+this.state.user.image} className="img-circle" width="80%"/>                     
-                                </div>
-                                <div className="col-md-9">
-                                    <h4><b>Kushal Shrestha</b></h4>
-                                    <p>address</p>
-                                </div>
-                            </div>
+                            
+                            {friendlist}
+                            
+                           
                             </div>
                             <div className="tab-pane" id="edit">
                             <h3 className="mb-3 color-blue"><b>Edit User</b></h3>
