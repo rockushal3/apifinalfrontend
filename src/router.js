@@ -5,6 +5,7 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom'
 import Post from './container/post/post'
 import Home from './container/home'
 import Profile from './container/profile/profile'
+import Trip from './container/trip/trip'
 
 
 class Router extends Component {
@@ -15,6 +16,7 @@ class Router extends Component {
                     <Route exact path="/" component={Home} />
                     <Route path="/newsfeed" component={Post} />
                     <Route path="/profile" component={Profile} />
+                    <Route path="/tripList" component={Trip} />
                 </Switch>
             </BrowserRouter>
         )

@@ -18,7 +18,7 @@ class HeaderLogin extends Component {
       }
     }
   }
-
+ 
   componentDidMount() {
     axios.get('http://localhost:3030/checkLogin', this.state.config)
       .then((response) => {

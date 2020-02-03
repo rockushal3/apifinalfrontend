@@ -9,7 +9,7 @@ class Header extends Component {
       email: '',
       password: '',
       isLoggedIn: false
-    }
+    } 
     
     this.state = {
           config: {
