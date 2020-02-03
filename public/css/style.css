@@ -4247,6 +4247,24 @@ color: #303030
                 overflow-x: auto; 
                 -ms-overflow-style: none;
 }
+.gedf-main{
+  height: 100vh; 
+                overflow-x: hidden; 
+                overflow-x: auto; 
+                -ms-overflow-style: none;
+}
+.gedf-main::-webkit-scrollbar {
+  display: none;
+}
+
+.main-timeline{
+                overflow-x: hidden; 
+                overflow-x: auto; 
+                -ms-overflow-style: none;
+}
+.main-timeline::-webkit-scrollbar {
+  display: none;
+}
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
   color: #2699FB;
 }
@@ -4280,6 +4298,7 @@ color: #303030
 .main-timeline{
     position: relative;
     z-index: 1;
+    min-height: 90vh;
 }
 .main-timeline:before{
     content: "";
@@ -4294,7 +4313,7 @@ color: #303030
     z-index: -1;
 }
 .main-timeline .timeline{
-  margin-top: 125px;
+  margin-top: 0;
     position: relative;
 }
 .main-timeline .timeline:before,
@@ -4312,7 +4331,7 @@ color: #303030
 .main-timeline .timeline-icon{
     width: 16px;
     height: 10px;
-    background: #ff9420;
+    background: #2699FB;
     margin: 0 auto;
     position: absolute;
     top: 17px;
@@ -4323,7 +4342,7 @@ color: #303030
 .main-timeline .timeline-icon:before{
     content: "";
     position: absolute;
-    border-bottom: 4px solid #ff9420;
+    border-bottom: 4px solid #2699FB;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
     top: -4px;
@@ -4331,7 +4350,7 @@ color: #303030
 }
 .main-timeline .timeline-icon:after{
     content: "";
-    border-top: 4px solid #ff9420;
+    border-top: 4px solid #2699FB;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
     position: absolute;
@@ -4341,7 +4360,7 @@ color: #303030
 .main-timeline .date{
     display: inline-block;
     padding: 2px 5px;
-    background: #ff9420;
+    background: #2699FB;
     font-size: 16px;
     color: #fff;
 }

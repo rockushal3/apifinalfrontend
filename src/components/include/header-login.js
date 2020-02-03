@@ -126,7 +126,7 @@ class HeaderLogin extends Component {
                       </div>
                       <div className="navbar-collapse collapse">
                         <ul className="nav navbar-nav">
-                          <li><a href=""><i className="fal fa-plane-alt"></i></a></li>
+                          <li><a href="/tripList"><i className="fal fa-plane-alt"></i></a></li>
 
 
                           <li class="dropdown">

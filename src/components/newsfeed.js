@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import Post from './post';
+import Success from './success';
+import Error from './error';
 import axios from 'axios'
 
+
 class Newsfeed extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.state = {
+      success_message: '',
+      error: ''
+    }
     this.state = {
       caption: '',
       image: {},
@@ -13,18 +20,24 @@ class Newsfeed extends Component {
       }
     }
   }
+
   sendUser = () => {
+    console.log(this.state.isLoggedIn)
     let formdata = new FormData();
-    formdata.append('image',this.state.image[0])
-    formdata.append('caption',this.state.caption)
-    formdata.append('user_id',this.props.user._id)
-    console.log(this.state.image[0])
-  
-    axios.post('http://localhost:3030/createpost', formdata,this.state.config).then(function(){
+    formdata.append('image', this.state.image[0])
+    formdata.append('caption', this.state.caption)
+    formdata.append('user_id', this.props.user._id)
+    axios.post('http://localhost:3030/createpost', formdata, this.state.config).then((response) => {
+      this.setState({
+        success_message: true
+      })
+
       window.location.reload();
+
+    }).catch(function () {
     })
   }
-  
+
 
   render() {
 
@@ -36,6 +49,9 @@ class Newsfeed extends Component {
     return (
 
       <section id="aa-blog-archive">
+        {this.state.success_message == true ? <Success message="Post successfully uploaded" /> : null}
+        {this.state.error == true ? <Error message="Something went wrong" /> : null}
+
         <div className="container">
           <div className="row">
             <div className="col-md-12">
@@ -47,8 +63,8 @@ class Newsfeed extends Component {
                         <div className="card">
                           <article className="card-group-item">
 
-                            <header className="card-header"><center><img src={"http://localhost:3030/image/" + this.props.user.image} style={{marginTop:10}} className="img-circle" width="100px" height="100px" /></center>
-                              <h5 className="title text-center"><b>{ this.props.user.name}</b></h5></header>
+                            <header className="card-header"><center><img src={"http://localhost:3030/image/" + this.props.user.image} style={{ marginTop: 10 }} className="img-circle" width="100px" height="100px" /></center>
+                              <h5 className="title text-center"><b>{this.props.user.name}</b></h5></header>
                             <center style={{ marginTop: 20, marginBottom: 20 }}><a className="btn btn-primary" data-toggle="modal" data-target="#myModal" style={{ backgroundColor: '#2699FB' }}>Add Post</a>
                             </center>
                             <div id="myModal" class="modal fade" role="dialog">
