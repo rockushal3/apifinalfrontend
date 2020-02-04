@@ -19,6 +19,22 @@ class HeaderLogin extends Component {
     }
   }
 
+  deleteRequest = (id) => {
+    
+    axios.delete('http://localhost:3030/deleteFriend/'+ id, this.state.config)
+        .then((response) => {
+            window.location.reload();
+        })
+}
+
+confirmRequest = (id) => {
+
+    axios.put('http://localhost:3030/acceptfriend/'+ id, this.state.config)
+        .then((response) => {
+            window.location.reload();
+        })
+      }
+
   componentDidMount() {
     axios.get('http://localhost:3030/checkLogin', this.state.config)
       .then((response) => {
@@ -82,8 +98,8 @@ class HeaderLogin extends Component {
         <li>
           <div class="col-md-4 col-sm-4 col-xs-4"><div class="notify-img"><img src={"http://localhost:3030/image/" + friend.user_id_1.image} alt="" className="img-circle" width="60px" height="60px" /></div></div>
           <div class="col-md-8 col-sm-8 col-xs-8"><h6><b>{friend.user_id_1.name}</b></h6>
-            <button className="btn btn-primary">Confirm</button>
-            <button className="btn btn-default" style={{ marginLeft: 10 }}>Cancel</button>
+            <button onClick={this.confirmRequest(friend._id)} className="btn btn-primary">Confirm</button>
+            <button onClick={this.deleteRequest(friend._id)} className="btn btn-default" style={{ marginLeft: 10 }}>Cancel</button>
           </div>
         </li>
       )
@@ -184,4 +200,5 @@ class HeaderLogin extends Component {
     )
   }
 }
+
 export default withRouter(HeaderLogin);

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Post from './post';
 import Friend from './friend';
 import axios from 'axios';
+import Success from './success';
 import { Link, withRouter, Redirect } from 'react-router-dom'
 
 class OtherProfile extends Component {
@@ -109,7 +110,7 @@ class OtherProfile extends Component {
         })
 
         const friendlist = this.state.friends.map(friend => {
-            if (friend.user_id_1._id == this.state.user._id) {
+            if (friend.user_id_1._id == this.props.user) {
                 return <Friend userdetail={friend.user_id_2} />
             }
             else {
@@ -119,6 +120,7 @@ class OtherProfile extends Component {
 
         return (
             <div className="container" >
+                 {this.state.success == true ? <Success message={this.state.successmgs} /> : null}
                 <div className="row my-2" style={{ paddingTop: 130 }}>
                     <div className="col-lg-4 order-lg-1 text-center">
                         <img src={"http://localhost:3030/image/" + this.state.profileuser.image} width="150px" height="150px" className="mx-auto img-fluid img-circle d-block" alt="avatar" />

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Post from './post';
+import SugestedFriend from './sugesstedfriend';
 import Success from './success';
 import Error from './error';
 import axios from 'axios'
@@ -14,12 +15,23 @@ class Newsfeed extends Component {
     }
     this.state = {
       caption: '',
+      users:[],
       image: {},
       config: {
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
       }
     }
   }
+
+  componentDidMount() {
+    axios.get('http://localhost:3030/findUser')
+            .then((response) => {
+                this.setState({
+                    users: response.data
+                })
+            })
+  }
+
 
   sendUser = () => {
     console.log(this.state.isLoggedIn)
@@ -44,6 +56,10 @@ class Newsfeed extends Component {
     //post design foreach loop
     const postdesign = this.props.post.map(post => {
       return <Post posts={post} />
+    })
+
+    const sugestedfriend = this.state.users.map(user1 => {
+      return <SugestedFriend userlist={user1} />
     })
 
     return (
@@ -110,27 +126,8 @@ class Newsfeed extends Component {
                           <h3>People You May Know</h3>
                           <div className="aa-recently-views">
                             <ul>
-                              <li>
-                                <a className="aa-cartbox-img" href="#"><img src="img/woman-small-2.jpg" width="50px" className="img-responsive" alt="img" /></a>
-                                <div className="aa-cartbox-info">
-                                  <h4><a href="#">Kushal Shrestha</a></h4>
-                                  <p><button className="btn btn-default">Send Request</button></p>
-                                </div>
-                              </li>
-                              <li>
-                                <a className="aa-cartbox-img" href="#"><img src="img/woman-small-2.jpg" width="50px" className="img-responsive" alt="img" /></a>
-                                <div className="aa-cartbox-info">
-                                  <h4><a href="#">Kushal Shrestha</a></h4>
-                                  <p><button className="btn btn-default">Send Request</button></p>
-                                </div>
-                              </li>
-                              <li>
-                                <a className="aa-cartbox-img" href="#"><img src="img/woman-small-2.jpg" width="50px" className="img-responsive" alt="img" /></a>
-                                <div className="aa-cartbox-info">
-                                  <h4><a href="#">Kushal Shrestha</a></h4>
-                                  <p><button className="btn btn-default">Send Request</button></p>
-                                </div>
-                              </li>
+                              {sugestedfriend}
+                            
                             </ul>
                           </div>
                         </div>
