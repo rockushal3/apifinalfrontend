@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Link, Redirect } from 'react-router-dom';
+import Error from '../error';
+
 class Header extends Component {
   //variable
   constructor(props) {
@@ -39,7 +41,7 @@ class Header extends Component {
       .then((response) => {
         localStorage.setItem('token', response.data.token)
         this.setState({ isLoggedIn: true })
-      }).catch((err) => console.log(err.response))
+      }).catch((err) => this.setState({ isLoggedIn: false }))
     this.setState({ email: '', password: '' })
   }
  
@@ -50,6 +52,8 @@ class Header extends Component {
     }
     return (
       <header id="aa-header" >
+        {this.state.isLoggedIn == false ? <Error message="Email or password incorrect" /> : null}
+
         <div className="aa-header-bottom">
           <div className="container">
             <div className="row">
@@ -76,7 +80,6 @@ class Header extends Component {
                         <button type="submit" onClick={this.submitForm}>Login</button>
                       </form>
                     </div>
-                    <a href="/newsfeed">Forget Password?</a>
                   </div>
 
                 </div>

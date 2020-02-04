@@ -241,7 +241,7 @@ class Userprofile extends Component {
                                     <div className="form-group row">
                                         <label className="col-lg-3 col-form-label form-control-label">Phone</label>
                                         <div className="col-lg-9">
-                                            <input className="form-control" name="phone" value={this.state.phone} onChange={this.handleChange} onChange={this.handleChange} />
+                                            <input className="form-control" name="phone" value={this.state.phone} onChange={this.handleChange} />
                                         </div>
                                     </div>
                                     <div className="form-group row">

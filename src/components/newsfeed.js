@@ -57,23 +57,29 @@ class Newsfeed extends Component {
             <div className="col-md-12">
               <div className="aa-blog-archive-area">
                 <div className="row">
-                  <div className="col-md-2 related-post ">
+                  <div className="col-md-1 ">
+
+                  </div>
+                  <div class="col-md-7 gedf-main">
+                    {postdesign}
+                  </div>
+                  <div className="col-md-3 ">
                     <div className="row">
                       <div className="col-md-12">
                         <div className="card">
                           <article className="card-group-item">
 
-                            <header className="card-header"><center><img src={"http://localhost:3030/image/" + this.props.user.image} style={{ marginTop: 10 }} className="img-circle" width="100px" height="100px" /></center>
-                              <h5 className="title text-center"><b>{this.props.user.name}</b></h5></header>
-                            <center style={{ marginTop: 20, marginBottom: 20 }}><a className="btn btn-primary" data-toggle="modal" data-target="#myModal" style={{ backgroundColor: '#2699FB' }}>Add Post</a>
-                            </center>
+                            <header className="card-header"><div className="col-md-4"><img src={"http://localhost:3030/image/" + this.props.user.image} style={{ marginTop: 10, marginRight: 10 }} className="img-circle" width="50px" height="50px" style={{ marginBottom: 20 }} />
+                            </div><div className="col-md-8"><b>@{this.props.user.name}</b><br /> {this.props.user.address}</div></header>
+                            <br /><a className="btn btn-primary" data-toggle="modal" data-target="#myModal" style={{ backgroundColor: '#2699FB', width: "100%" }}>Add Post</a>
+
                             <div id="myModal" class="modal fade" role="dialog">
                               <div className="modal-dialog">
 
                                 <div className="modal-content">
                                   <div className="modal-header">
                                     <button type="button" className="close" data-dismiss="modal">&times;</button>
-                                    <h4 className="modal-title">Add Trip</h4>
+                                    <h4 className="modal-title">Create a Post</h4>
                                   </div>
                                   <div className="modal-body">
                                     <form >
@@ -93,54 +99,43 @@ class Newsfeed extends Component {
                                 </div>
                               </div>
                             </div>
-                            <div className="filter-content">
-                              <div className="list-group list-group-flush">
-                                <a href="#" className="list-group-item">My trip <span className="float-right badge badge-light round">142</span> </a>
-                                <a href="#" className="list-group-item">Friends  <span className="float-right badge badge-light round">3</span>  </a>
-                                <a href="#" className="list-group-item">Friends Req <span className="float-right badge badge-light round">32</span>  </a>
-                                <a href="#" className="list-group-item">Notification<span className="float-right badge badge-light round">12</span>  </a>
-                              </div>
-                            </div>
                           </article>
                         </div>
                       </div>
 
                     </div>
-                  </div>
-                  <div class="col-md-7 gedf-main">
-                    {postdesign}
-                  </div>
-                  <div className="col-md-3 related-post">
-                    <aside className="aa-blog-sidebar">
-                      <div className="aa-sidebar-widget">
-                        <h3>People You May Know</h3>
-                        <div className="aa-recently-views">
-                          <ul>
-                            <li>
-                              <a className="aa-cartbox-img" href="#"><img src="img/woman-small-2.jpg" width="50px" className="img-responsive" alt="img" /></a>
-                              <div className="aa-cartbox-info">
-                                <h4><a href="#">Kushal Shrestha</a></h4>
-                                <p><button className="btn btn-default">Send Request</button></p>
-                              </div>
-                            </li>
-                            <li>
-                              <a className="aa-cartbox-img" href="#"><img src="img/woman-small-2.jpg" width="50px" className="img-responsive" alt="img" /></a>
-                              <div className="aa-cartbox-info">
-                                <h4><a href="#">Kushal Shrestha</a></h4>
-                                <p><button className="btn btn-default">Send Request</button></p>
-                              </div>
-                            </li>
-                            <li>
-                              <a className="aa-cartbox-img" href="#"><img src="img/woman-small-2.jpg" width="50px" className="img-responsive" alt="img" /></a>
-                              <div className="aa-cartbox-info">
-                                <h4><a href="#">Kushal Shrestha</a></h4>
-                                <p><button className="btn btn-default">Send Request</button></p>
-                              </div>
-                            </li>
-                          </ul>
+                    <div className="row related-post">
+                      <aside className="aa-blog-sidebar related-post">
+                        <div className="aa-sidebar-widget">
+                          <h3>People You May Know</h3>
+                          <div className="aa-recently-views">
+                            <ul>
+                              <li>
+                                <a className="aa-cartbox-img" href="#"><img src="img/woman-small-2.jpg" width="50px" className="img-responsive" alt="img" /></a>
+                                <div className="aa-cartbox-info">
+                                  <h4><a href="#">Kushal Shrestha</a></h4>
+                                  <p><button className="btn btn-default">Send Request</button></p>
+                                </div>
+                              </li>
+                              <li>
+                                <a className="aa-cartbox-img" href="#"><img src="img/woman-small-2.jpg" width="50px" className="img-responsive" alt="img" /></a>
+                                <div className="aa-cartbox-info">
+                                  <h4><a href="#">Kushal Shrestha</a></h4>
+                                  <p><button className="btn btn-default">Send Request</button></p>
+                                </div>
+                              </li>
+                              <li>
+                                <a className="aa-cartbox-img" href="#"><img src="img/woman-small-2.jpg" width="50px" className="img-responsive" alt="img" /></a>
+                                <div className="aa-cartbox-info">
+                                  <h4><a href="#">Kushal Shrestha</a></h4>
+                                  <p><button className="btn btn-default">Send Request</button></p>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
                         </div>
-                      </div>
-                    </aside>
+                      </aside>
+                    </div>
                   </div>
                 </div>
               </div>

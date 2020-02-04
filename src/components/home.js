@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-
+import Success from './success';
 class Home extends Component {
   constructor() {
     super();
@@ -11,7 +11,8 @@ class Home extends Component {
       'name': '',
       'lname': '',
       'phone': '',
-      'password': ''
+      'password': '',
+      isRegisterIn: ''
     }
   }
 
@@ -25,19 +26,24 @@ class Home extends Component {
       password: this.state.password
 
     };
-    axios.post('http://localhost:3030/createUser', data)
+    axios.post('http://localhost:3030/createUser', data).then((response) => {
+      this.setState({ isRegisterIn: true })
+    })
   }
 
   render() {
 
 
     return (
-      <section id="aa-banner">
+      <section id="aa-banner" style={{minHeight: "80vh"}}>
+        {this.state.isRegisterIn == true ? <Success message="user has been register" /> : null}
         <div className="container">
           <div className="row">
             <div className="col-md-6">
               <br />
               <h2 className="blackbold-text">Connect with friends. Plan and find<br /> friends for travelling world</h2>
+              <br/><br/>
+              <img src="img/home.png" className="img-responsive"/>
             </div>
             <div className="col-md-6">
               <br />

@@ -6,6 +6,7 @@ import Post from './container/post/post'
 import Home from './container/home'
 import Profile from './container/profile/profile'
 import Trip from './container/trip/trip'
+import FriendProfile from './container/friendsprofile/friendprofile'
 
 
 class Router extends Component {
@@ -16,7 +17,8 @@ class Router extends Component {
                     <Route exact path="/" component={Home} />
                     <Route path="/newsfeed" component={Post} />
                     <Route path="/profile" component={Profile} />
-                    <Route path="/tripList" component={Trip} />
+                    <Route path="/trip" component={Trip} />
+                    <Route path="/usersprofile/:id" component={FriendProfile} />
                 </Switch>
             </BrowserRouter>
         )

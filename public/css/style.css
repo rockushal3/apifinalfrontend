@@ -2639,6 +2639,8 @@ color: #303030
   display: inline;
   float: left;
   width: 100%;
+  padding: 10px;
+
 }
 #aa-blog-archive .aa-blog-archive-area .aa-blog-sidebar .aa-sidebar-widget {
   display: inline;

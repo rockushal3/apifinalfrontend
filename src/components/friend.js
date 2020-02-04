@@ -10,7 +10,7 @@ class Friend extends Component {
                   <img src={"http://localhost:3030/image/"+this.props.userdetail.image} alt="" width="45px" height="45px" class="media-object img-circle"/>
                   </a>
                   <div class="media-body valign-middle">
-                    <b class="text-inverse">{this.props.userdetail.name}</b>
+                   <a href={"/usersprofile/" + this.props.userdetail._id}> <b class="text-inverse">{this.props.userdetail.name}</b></a>
                     <p >{this.props.userdetail.address}</p>
                   </div>
                   <div class="media-body valign-middle text-right overflow-visible">
