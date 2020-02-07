@@ -4,6 +4,8 @@ import SugestedFriend from './sugesstedfriend';
 import Success from './success';
 import Error from './error';
 import axios from 'axios'
+import { Animated } from "react-animated-css";
+
 
 
 class Newsfeed extends Component {
@@ -83,9 +85,14 @@ class Newsfeed extends Component {
                       <div className="col-md-12">
                         <div className="card">
                           <article className="card-group-item">
-
-                            <header className="card-header"><div className="col-md-4"><img src={"http://localhost:3030/image/" + this.props.user.image} style={{ marginTop: 10, marginRight: 10 }} className="img-circle" width="50px" height="50px" style={{ marginBottom: 20 }} />
-                            </div><div className="col-md-8"><a href="/profile"><b>@{this.props.user.name}</b></a><br /> {this.props.user.address}</div></header>
+                          <Animated animationIn="bounceInRight" animationOut="fadeOut" isVisible={true}>
+                            <header className="card-header">
+                              <div className="col-md-4">
+                                <img src={"http://localhost:3030/image/" + this.props.user.image} style={{ marginTop: 10, marginRight: 10 }} className="img-circle" width="50px" height="50px" style={{ marginBottom: 20 }} />
+                              </div><div className="col-md-8"><a href="/profile"><b>@{this.props.user.name}</b></a><br /> {this.props.user.address}
+                              </div>
+                            </header>
+                          </Animated>
                             <br /><a className="btn btn-primary" data-toggle="modal" data-target="#myModal" style={{ backgroundColor: '#2699FB', width: "100%" }}>Add Post</a>
 
                             <div id="myModal" class="modal fade" role="dialog">
@@ -125,7 +132,9 @@ class Newsfeed extends Component {
                           <h3>People You May Know</h3>
                           <div className="aa-recently-views suggestedfriend">
                             <ul>
-                              {sugestedfriend}
+                              <Animated animationIn="bounceInRight" animationOut="fadeOut" isVisible={true}>
+                                {sugestedfriend}
+                              </Animated>
 
                             </ul>
                           </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import Success from './success';
+import {Animated} from "react-animated-css";
 
 
 class Post extends Component {
@@ -38,6 +39,7 @@ class Post extends Component {
       }
     render() {
         return (
+          <Animated animationIn="bounceInLeft"  animationOut="fadeOut" isVisible={true}>
             <div className="row post">
             {this.state.success_message == true ? <Success message="Post successfully deleted" /> : null}
 
@@ -61,7 +63,7 @@ class Post extends Component {
                     <img src={"http://localhost:3030/image/post/" + this.props.posts.image} className="img-responsive post-img" width="100%" />
                 </div>
             </div>
-            
+            </Animated>
         )
     }s
 }

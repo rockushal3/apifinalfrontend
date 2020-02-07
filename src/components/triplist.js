@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SugestedFriend from './sugesstedfriend';
 import Success from './success';
 import axios from 'axios'
+import {Animated} from "react-animated-css";
 
 class TripList extends Component {
   constructor(props) {
@@ -115,7 +116,8 @@ class TripList extends Component {
       if (index % 2 == 0) {
         return (
         <div class="timeline">
-          <div class="timeline-content left">
+          <Animated animationIn="bounceInLeft" animationOut="fadeOut" isVisible={true}>
+          <div class="timeline-content left wobble">
             <span class="timeline-icon"></span>
             <span class="date">{tripe.date}</span>
             <h2 class="title">{tripe.trip_name}</h2>
@@ -126,12 +128,14 @@ class TripList extends Component {
               <button onClick={this.getTripdetail.bind(this,tripe._id)}  data-toggle="modal" data-target="#model_1"  className="btn btn-primary-outline" ><i className="fa fa-edit"></i></button>  
             </p>
           </div>
+          </Animated>
         </div>
         )
 
       }
       else {
         return (<div class="timeline">
+          <Animated animationIn="bounceInRight" animationOut="fadeOut" isVisible={true}>
           <div class="timeline-content right">
             <span class="timeline-icon"></span>
             <span class="date">{tripe.date}</span>
@@ -143,6 +147,7 @@ class TripList extends Component {
               <button onClick={this.getTripdetail.bind(this,tripe._id)}  data-toggle="modal" data-target="#model_1"  className="btn btn-primary-outline" ><i className="fa fa-edit"></i></button>        
             </p>
           </div>
+          </Animated>
         </div>)
       }
 
