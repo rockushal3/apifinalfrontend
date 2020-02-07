@@ -8,10 +8,9 @@ import { Link, withRouter, Redirect } from 'react-router-dom'
 class OtherProfile extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
-            success:'',
-            successmgs:'',
+            success: '',
+            successmgs: '',
             friends: [],
             post: [],
             user: '',
@@ -57,44 +56,45 @@ class OtherProfile extends Component {
                 this.setState({
                     friends: response.data
                 })
+                console.log(this.state.friends)
             })
 
     }
 
     sendfriendRequest = () => {
-        const data={
-            user_id_1 : this.state.user._id,
-            user_id_2 : this.props.user
+        const data = {
+            user_id_1: this.state.user._id,
+            user_id_2: this.props.user
         }
-        axios.post('http://localhost:3030/addfriend' , data, this.state.config)
+        axios.post('http://localhost:3030/addfriend', data, this.state.config)
             .then((response) => {
                 this.setState({
                     success: true,
-                    successmgs:"request send"
+                    successmgs: "request send"
                 })
                 window.location.reload();
             })
     }
 
     deleteRequest = () => {
-    
-        axios.delete('http://localhost:3030/deleteFriend/'+ this.state.relation._id, this.state.config)
+
+        axios.delete('http://localhost:3030/deleteFriend/' + this.state.relation._id, this.state.config)
             .then((response) => {
                 this.setState({
                     success: true,
-                    successmgs:"successfully deleted request"
+                    successmgs: "successfully deleted request"
                 })
                 window.location.reload();
             })
     }
 
     confirmRequest = () => {
-    
-        axios.put('http://localhost:3030/acceptfriend/'+ this.state.relation._id, this.state.config)
+
+        axios.put('http://localhost:3030/acceptfriend/' + this.state.relation._id, this.state.config)
             .then((response) => {
                 this.setState({
                     success: true,
-                    successmgs:"You accept friend request"
+                    successmgs: "You accept friend request"
                 })
                 window.location.reload();
             })
@@ -120,7 +120,7 @@ class OtherProfile extends Component {
 
         return (
             <div className="container" >
-                 {this.state.success == true ? <Success message={this.state.successmgs} /> : null}
+                {this.state.success == true ? <Success message={this.state.successmgs} /> : null}
                 <div className="row my-2" style={{ paddingTop: 130 }}>
                     <div className="col-lg-4 order-lg-1 text-center">
                         <img src={"http://localhost:3030/image/" + this.state.profileuser.image} width="150px" height="150px" className="mx-auto img-fluid img-circle d-block" alt="avatar" />
@@ -142,7 +142,7 @@ class OtherProfile extends Component {
                     </div>
                     <div className="col-lg-8 order-lg-2 user-post">
                         <div classNameName="col-lg-12">
-                            <img src={"http://localhost:3030/image/" + this.state.profileuser.coverimage} className="img-responsive" width="100%" />
+                            <img src={"http://localhost:3030/image/" + this.state.profileuser.coverimage} height="300" className="img-responsive" width="100%" />
                             <br />
                         </div>
                         <ul className="nav nav-tabs">
@@ -150,17 +150,17 @@ class OtherProfile extends Component {
                                 <a href="" data-target="#profile" data-toggle="tab" className="nav-link active">Profile</a>
                             </li>
                             {this.state.relation.Status == "Friends" ?
-                             <li className="nav-item">
-                                <a href="" data-target="#messages" data-toggle="tab" className="nav-link">Friends</a>
-                            </li>
-                             : null}
-                             {this.state.relation.Status == "Friends" ?
-                             <li className="nav-item">
-                                <a href="" data-target="#edit" data-toggle="tab" className="nav-link">Trip List</a>
-                            </li>
-                             : null}
-                            
-                           
+                                <li className="nav-item">
+                                    <a href="" data-target="#messages" data-toggle="tab" className="nav-link">Friends</a>
+                                </li>
+                                : null}
+                            {this.state.relation.Status == "Friends" ?
+                                <li className="nav-item">
+                                    <a href="" data-target="#edit" data-toggle="tab" className="nav-link">Trip List</a>
+                                </li>
+                                : null}
+
+
                         </ul>
                         <div className="tab-content py-4">
                             <div className="tab-pane active" id="profile">
@@ -210,6 +210,6 @@ class OtherProfile extends Component {
             </div>
 
         )
-    } s
+    } 
 }
 export default OtherProfile;

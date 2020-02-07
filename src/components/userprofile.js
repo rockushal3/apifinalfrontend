@@ -166,7 +166,7 @@ class Userprofile extends Component {
                     </div>
                     <div className="col-lg-8 order-lg-2 user-post">
                         <div classNameName="col-lg-12">
-                            <img src={"http://localhost:3030/image/" + this.state.user.coverimage} className="img-responsive" width="100%" />
+                            <img src={"http://localhost:3030/image/" + this.state.user.coverimage} className="rounded img-fluid" style={{maxHeight:"400px "}} width="100%" />
                         <br/>
                         </div>
                         <ul className="nav nav-tabs">

@@ -4,26 +4,26 @@ import Newsfeed from '../../components/newsfeed'
 import Footer from '../../components/include/footer'
 import axios from 'axios';
 class Post extends Component {
-    
+
     constructor(props) {
         super(props)
-        
+
         this.state = {
-            user:{},
-            posts:[],
-              config: {
-                  headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
-              }
-          }
-      }
+            user: {},
+            posts: [],
+            config: {
+                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+            }
+        }
+    }
 
     componentDidMount() {
         axios.get('http://localhost:3030/checkLogin', this.state.config)
             .then((response) => {
                 this.setState({
-                    user:response.data
-                    })
-                    console.log(this.state.isLoggedIn)
+                    user: response.data
+                })
+                console.log(this.state.isLoggedIn)
             });
         axios.get("http://localhost:3030/findpost", this.state.config).then(res => {
             this.setState({ posts: res.data });
@@ -31,7 +31,7 @@ class Post extends Component {
     }
 
     render() {
-    
+
 
         return (
             <div>

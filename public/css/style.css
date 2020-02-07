@@ -4267,6 +4267,15 @@ color: #303030
 .main-timeline::-webkit-scrollbar {
   display: none;
 }
+.suggestedfriend{
+  max-height: 400px;
+  overflow-x: hidden; 
+  overflow-x: auto; 
+  -ms-overflow-style: none;
+}
+.suggestedfriend::-webkit-scrollbar {
+  display: none;
+}
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
   color: #2699FB;
 }

@@ -15,7 +15,7 @@ class Newsfeed extends Component {
     }
     this.state = {
       caption: '',
-      users:[],
+      users: [],
       image: {},
       config: {
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
@@ -25,11 +25,11 @@ class Newsfeed extends Component {
 
   componentDidMount() {
     axios.get('http://localhost:3030/findUser')
-            .then((response) => {
-                this.setState({
-                    users: response.data
-                })
-            })
+      .then((response) => {
+        this.setState({
+          users: response.data
+        })
+      })
   }
 
 
@@ -59,7 +59,7 @@ class Newsfeed extends Component {
     })
 
     const sugestedfriend = this.state.users.map(user1 => {
-      return <SugestedFriend userlist={user1} />
+      return <SugestedFriend userlist={user1} loginuser={this.props.user.name} />
     })
 
     return (
@@ -121,13 +121,13 @@ class Newsfeed extends Component {
 
                     </div>
                     <div className="row related-post">
-                      <aside className="aa-blog-sidebar related-post">
+                      <aside className="aa-blog-sidebar ">
                         <div className="aa-sidebar-widget">
                           <h3>People You May Know</h3>
-                          <div className="aa-recently-views">
+                          <div className="aa-recently-views suggestedfriend">
                             <ul>
                               {sugestedfriend}
-                            
+
                             </ul>
                           </div>
                         </div>

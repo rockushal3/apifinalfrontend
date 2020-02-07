@@ -19,22 +19,6 @@ class HeaderLogin extends Component {
     }
   }
 
-  deleteRequest = (id) => {
-    
-    axios.delete('http://localhost:3030/deleteFriend/'+ id, this.state.config)
-        .then((response) => {
-            window.location.reload();
-        })
-}
-
-confirmRequest = (id) => {
-
-    axios.put('http://localhost:3030/acceptfriend/'+ id, this.state.config)
-        .then((response) => {
-            window.location.reload();
-        })
-      }
-
   componentDidMount() {
     axios.get('http://localhost:3030/checkLogin', this.state.config)
       .then((response) => {
@@ -44,7 +28,6 @@ confirmRequest = (id) => {
         })
         axios.get("http://localhost:3030/getallrelation/" + this.state.user._id).then((res) => {
           this.setState({ relation: res.data });
-          console.log(this.state.relation)
         })
         axios.get("http://localhost:3030/getrequest/" + this.state.user._id).then((res) => {
           this.setState({ friendrequest: res.data });
@@ -89,7 +72,7 @@ confirmRequest = (id) => {
           </li>)
       }
       else {
-        return <h1>{friend.user_id_1}</h1>
+        return <center><h4>You don't have notification</h4></center>
       }
     })
     //notification function 
@@ -98,8 +81,8 @@ confirmRequest = (id) => {
         <li>
           <div class="col-md-4 col-sm-4 col-xs-4"><div class="notify-img"><img src={"http://localhost:3030/image/" + friend.user_id_1.image} alt="" className="img-circle" width="60px" height="60px" /></div></div>
           <div class="col-md-8 col-sm-8 col-xs-8"><h6><b>{friend.user_id_1.name}</b></h6>
-            <button onClick={this.confirmRequest(friend._id)} className="btn btn-primary">Confirm</button>
-            <button onClick={this.deleteRequest(friend._id)} className="btn btn-default" style={{ marginLeft: 10 }}>Cancel</button>
+            <button  className="btn btn-primary">Confirm</button>
+            <button className="btn btn-default" style={{ marginLeft: 10 }}>Cancel</button>
           </div>
         </li>
       )
@@ -153,12 +136,8 @@ confirmRequest = (id) => {
                                 </div>
                               </div>
                               <div class="drop-content">
-
-                                {friendRequest}
+                              {this.state.friendrequest == "" ? <center><h4>you don't have any request!</h4></center> : friendRequest}
                               </div>
-
-
-
                             </ul>
                           </li>
 
@@ -181,7 +160,7 @@ confirmRequest = (id) => {
                           <li><a href="#"><i className="fal fa-cog"> </i></a>
                             <ul className="dropdown-menu">
                               <li><a href="/profile">Profile</a></li>
-                              <li><a href="">Setting</a></li>
+                              <li><a href="">Change Password</a></li>
                               <li><a href="/" onClick={this.handleLogout}>Logout</a></li>
                             </ul>
                           </li>
