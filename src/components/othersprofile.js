@@ -11,6 +11,7 @@ class OtherProfile extends Component {
         this.state = {
             success: '',
             successmgs: '',
+            trips: [],
             friends: [],
             post: [],
             user: '',
@@ -58,6 +59,9 @@ class OtherProfile extends Component {
                 })
                 console.log(this.state.friends)
             })
+            axios.get("http://localhost:3030/findTripByUserId/" + this.props.user).then((res) => {
+                this.setState({ trips: res.data });
+              })    
 
     }
 
@@ -117,6 +121,38 @@ class OtherProfile extends Component {
                 return <Friend userdetail={friend.user_id_1} />
             }
         })
+
+        const tripslist = this.state.trips.map((tripe, index) => {
+            if (index % 2 == 0) {
+              return (
+              <div class="timeline">
+                <div class="timeline-content left">
+                  <span class="timeline-icon"></span>
+                  <span class="date">{tripe.date}</span>
+                  <h2 class="title">{tripe.trip_name}</h2>
+                  <p class="description">
+                    {tripe.description}
+                  </p>
+                </div>
+              </div>
+              )
+      
+            }
+            else {
+              return (<div class="timeline">
+                <div class="timeline-content right">
+                  <span class="timeline-icon"></span>
+                  <span class="date">{tripe.date}</span>
+                  <h2 class="title">{tripe.trip_name}</h2>
+                  <p class="description">
+                    {tripe.description}
+                  </p>
+                </div>
+              </div>)
+            }
+      
+      
+          })
 
         return (
             <div className="container" >
@@ -201,7 +237,11 @@ class OtherProfile extends Component {
                             </div>
                             <div className="tab-pane" id="edit">
                                 <h3 className="mb-3 color-blue"><b>Trip List</b></h3>
+                                <div class="main-timeline">
 
+                                    {tripslist}
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -210,6 +250,6 @@ class OtherProfile extends Component {
             </div>
 
         )
-    } 
+    }
 }
 export default OtherProfile;
