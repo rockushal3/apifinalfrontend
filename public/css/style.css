@@ -4427,3 +4427,9 @@ color: #303030
         text-align: left;
     }
 }
+
+.btn-primary-outline {
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}

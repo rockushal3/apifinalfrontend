@@ -34,7 +34,6 @@ class Newsfeed extends Component {
 
 
   sendUser = () => {
-    console.log(this.state.isLoggedIn)
     let formdata = new FormData();
     formdata.append('image', this.state.image[0])
     formdata.append('caption', this.state.caption)
@@ -86,7 +85,7 @@ class Newsfeed extends Component {
                           <article className="card-group-item">
 
                             <header className="card-header"><div className="col-md-4"><img src={"http://localhost:3030/image/" + this.props.user.image} style={{ marginTop: 10, marginRight: 10 }} className="img-circle" width="50px" height="50px" style={{ marginBottom: 20 }} />
-                            </div><div className="col-md-8"><b>@{this.props.user.name}</b><br /> {this.props.user.address}</div></header>
+                            </div><div className="col-md-8"><a href="/profile"><b>@{this.props.user.name}</b></a><br /> {this.props.user.address}</div></header>
                             <br /><a className="btn btn-primary" data-toggle="modal" data-target="#myModal" style={{ backgroundColor: '#2699FB', width: "100%" }}>Add Post</a>
 
                             <div id="myModal" class="modal fade" role="dialog">
