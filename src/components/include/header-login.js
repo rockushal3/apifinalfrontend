@@ -41,10 +41,13 @@ class HeaderLogin extends Component {
       });
   }
   handleLogout = (e) => {
+    axios.delete('http://localhost:3030/logout', this.state.config)
+        .then((response) => {
     e.preventDefault();
     localStorage.removeItem('token');
     this.props.history.push('/')
-  }
+  })
+}
 
   deleteRequest = (id) => {
 
