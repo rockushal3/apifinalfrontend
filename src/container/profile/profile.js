@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Header from '../../components/include/header-login'
 import Footer from '../../components/include/footer'
-import Triplist from '../../components/triplist'
+import Userprofile from '../../components/userprofile'
 
-class Trip extends Component {
+class Profile extends Component {
     
 
     render() {
@@ -12,7 +12,7 @@ class Trip extends Component {
         return (
             <div>
                 <Header />
-                <Triplist/>
+                <Userprofile/>
                 <Footer />
             </div>
         )
@@ -20,4 +20,4 @@ class Trip extends Component {
 
 }
 
-export default Trip
+export default Profile

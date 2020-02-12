@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import Header from '../../components/include/header-login'
+import Profile from '../../components/othersprofile'
 import Footer from '../../components/include/footer'
-import Triplist from '../../components/triplist'
-
-class Trip extends Component {
+class FriendProfile extends Component {
     
-
+   
     render() {
-    
-
+        {console.log(this.props)}
         return (
             <div>
                 <Header />
-                <Triplist/>
+                <Profile user={this.props.match.params.id}/>
                 <Footer />
             </div>
         )
@@ -20,4 +18,4 @@ class Trip extends Component {
 
 }
 
-export default Trip
+export default FriendProfile
