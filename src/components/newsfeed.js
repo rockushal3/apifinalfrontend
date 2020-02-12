@@ -40,7 +40,7 @@ class Newsfeed extends Component {
     formdata.append('image', this.state.image[0])
     formdata.append('caption', this.state.caption)
     formdata.append('user_id', this.props.user._id)
-    axios.post('http://localhost:3030/createpost', formdata, this.state.config).then((response) => {
+    axios.post('http://localhost:3030/post', formdata, this.state.config).then((response) => {
       this.setState({
         success_message: true
       })

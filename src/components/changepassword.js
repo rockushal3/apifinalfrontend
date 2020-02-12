@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import Error from '../components/error';
-import Success from '../components/success';
+import Error from './error';
+import Success from './success';
 
 
 class ChnagePassword extends Component {
@@ -81,11 +81,11 @@ class ChnagePassword extends Component {
                         <h1>Change Password</h1>
                         <div className="form-group center-block" style={{ margin: "0 auto" }}>
                             <label for="caption">Old Password:</label><br />
-                            <input className="form-control" style={{ width: "100%" }} name="oldpassword" value={this.state.oldpassword} onChange={this.handleChange} type="password" placeholder="Old Password" />
+                            <input className="form-control" style={{ width: "100%" }} name="oldpassword" value={this.state.oldpassword} onChange={this.handleChange} type="password" placeholder="Old Password" required />
                             <label for="image">New Password:</label><br />
-                            <input className="form-control" style={{ width: "100%" }} name="newpassword" value={this.state.newpassword} onChange={this.handleChange} type="password" placeholder="New Password" />
+                            <input className="form-control" style={{ width: "100%" }} name="newpassword" value={this.state.newpassword} onChange={this.handleChange} type="password" placeholder="New Password" required />
                             <label for="image">Confirm Password:</label><br />
-                            <input className="form-control" style={{ width: "100%" }} name="confirmpassword" value={this.state.confirmpassword} onChange={this.handleChange} type="password" placeholder="Confirm Password" /><br /><br />
+                            <input className="form-control" style={{ width: "100%" }} name="confirmpassword" value={this.state.confirmpassword} onChange={this.handleChange} type="password" placeholder="Confirm Password" required /><br /><br />
                             <button onClick={this.updatepassword} className="btn btn-primary">Change Password</button>
                         </div>
                     </div>

@@ -60,7 +60,7 @@ class TripList extends Component {
   
       }
   
-      axios.post('http://localhost:3030/createTrip', formdata, this.state.config).then((response) => {
+      axios.post('http://localhost:3030/trip', formdata, this.state.config).then((response) => {
         this.setState({
           success_message: true
         })
@@ -72,23 +72,25 @@ class TripList extends Component {
     }
     
     tripdelete =(id)=> {
-      axios.delete("http://localhost:3030/deleteTrip/"+id, this.state.config).then((response) => {
+      axios.delete("http://localhost:3030/trip/"+id, this.state.config).then((response) => {
         this.setState({
           success_message: true
+          
         }) 
+        window.location.reload();
+
       }).catch(function (e) {
       })
     }
 
     getTripdetail=(id)=>{
-      axios.get("http://localhost:3030/findTripById/"+id, this.state.config).then((response) => {
+      axios.get("http://localhost:3030/trip/"+id, this.state.config).then((response) => {
         this.setState({
         description_edit:response.data.description,
         location_edit:response.data.trip_name,
         date_edit:response.data.date,
         edit_id:response.data._id
         })
-        console.log(response)
       }).catch(function (e) {
       })
 
@@ -101,7 +103,7 @@ class TripList extends Component {
   
       }
   
-      axios.put("http://localhost:3030/updateTrip/"+this.state.edit_id,formdata, this.state.config).then((response) => {
+      axios.put("http://localhost:3030/trip/"+this.state.edit_id,formdata, this.state.config).then((response) => {
         
         window.location.reload();
     })

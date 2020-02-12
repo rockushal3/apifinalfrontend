@@ -27,7 +27,7 @@ class Post extends Component {
     }
     deletepost = () => {
     
-        axios.delete('http://localhost:3030/deletepost/'+this.props.posts._id).then((response) => {
+        axios.delete('http://localhost:3030/post/'+this.props.posts._id).then((response) => {
           this.setState({
             success_message: true
           })

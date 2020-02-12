@@ -25,7 +25,7 @@ class Post extends Component {
                 })
                 console.log(this.state.isLoggedIn)
             });
-        axios.get("http://localhost:3030/findpost", this.state.config).then(res => {
+        axios.get("http://localhost:3030/post", this.state.config).then(res => {
             this.setState({ posts: res.data });
         })
     }
