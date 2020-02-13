@@ -15,6 +15,7 @@ class HeaderLogin extends Component {
       success:{},
       successmgs:{},
       user: {},
+      search:'',
       config: {
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
       }
@@ -137,10 +138,9 @@ confirmRequest = (id) => {
                   </div>
                   <div className="aa-search-box">
 
-                    <form action="">
-                      <input type="text" name="" id="" placeholder="Search" />
-                      <button type="submit"><span className="fa fa-search" /></button>
-                    </form>
+                      <input type="text" name="search" value={this.state.search} onChange={(event) =>
+                    this.setState({ search: event.target.value })}  id="" placeholder="Search" />
+                      <button><a style={{color:"#fff"}}  href={"/Search/" + this.state.search}><span className="fa fa-search" /></a></button>
                   </div>
 
                   <div className="col-md-5 aa-menu-box">

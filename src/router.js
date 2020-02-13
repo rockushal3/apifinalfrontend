@@ -8,6 +8,7 @@ import Profile from './container/profile/profile'
 import Trip from './container/trip/trip'
 import FriendProfile from './container/friendsprofile/friendprofile'
 import Changepassword from './container/changepassword'
+import Search from './container/search'
 
 
 class Router extends Component {
@@ -21,6 +22,7 @@ class Router extends Component {
                     <Route path="/trip" component={Trip} />
                     <Route path="/usersprofile/:id" component={FriendProfile} />
                     <Route path="/Changepassword" component={Changepassword} />
+                    <Route path="/Search/:location" component={Search} />
 
                 </Switch>
             </BrowserRouter>

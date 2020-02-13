@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Header from '../components/include/header-login'
 import Search from '../components/search'
 import Footer from '../components/include/footer'
-import axios from 'axios'
 
 class Home extends Component {
     
@@ -12,7 +11,7 @@ class Home extends Component {
         return (
             <div>
                 <Header />
-                <Search />
+                <Search search={this.props.match.params.location}/>
                 <Footer />
 
             </div>
