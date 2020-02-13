@@ -5,7 +5,6 @@ class Post extends Component {
 
 
     return (
-
       <div className="row post">
         <div className="col-md-12">
           <img src={"http://localhost:3030/image/" + this.props.posts.image} className="img-circle" height="40px" width="40px" />
