@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 class Post extends Component {
   render() {
-
-
     return (
       <div className="row post">
         <div className="col-md-12">
